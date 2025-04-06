@@ -30,12 +30,17 @@ const HomePage = () => {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
+ 
+  const formatPeso = (amount: number) =>
+    new Intl.NumberFormat("en-PH", {
+      style: "currency",
+      currency: "PHP",
+    }).format(amount);
   const featuredMachines = [
     {
       id: "1",
-      name: "Industrial Mixer XL-5000",
-      price: 12500,
+      name: "Cacao Beans Segregator",
+      price: 7000,
       image:
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
       description: "High-capacity industrial mixer for large-scale production",
@@ -61,7 +66,7 @@ const HomePage = () => {
   const featuredParts = [
     {
       id: "101",
-      name: "Replacement Blade Set",
+      name: "Motor Driver",
       price: 450,
       image:
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
@@ -69,7 +74,7 @@ const HomePage = () => {
     },
     {
       id: "102",
-      name: "Mixer Paddle Assembly",
+      name: "Servo Motors",
       price: 320,
       image:
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
@@ -77,7 +82,7 @@ const HomePage = () => {
     },
     {
       id: "103",
-      name: "Conveyor Belt Kit",
+      name: "Stepper Motors",
       price: 580,
       image:
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
@@ -214,11 +219,11 @@ const HomePage = () => {
         <div className="relative container mx-auto px-4 py-16 md:py-24 z-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              Industrial Machinery & Spare Parts Solutions
+              VariCacao Tech
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              High-quality industrial machines and compatible spare parts for
-              your manufacturing needs.
+              High-quality cacao bean segregator and compatible spare parts for
+              your manufacturing needs, COCOA-nize your world.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="font-semibold">
@@ -232,40 +237,43 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Featured Machines */}
-      <section id="machines" className="container mx-auto px-4 py-16">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Featured Machines</h2>
-          <Button variant="outline">View All</Button>
+    {/* Featured Machine */}
+<section id="machines" className="container mx-auto px-4 py-16">
+  <div className="flex justify-between items-center mb-8">
+    <h2 className="text-3xl font-bold">Featured Machine</h2>
+  
+  </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {featuredMachines.length > 0 && (
+      <Card key={featuredMachines[0].id} className="overflow-hidden">
+        <div className="aspect-video relative overflow-hidden">
+          <img
+            src={featuredMachines[0].image}
+            alt={featuredMachines[0].name}
+            className="object-cover w-full h-full transition-transform hover:scale-105"
+          />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredMachines.map((machine) => (
-            <Card key={machine.id} className="overflow-hidden">
-              <div className="aspect-video relative overflow-hidden">
-                <img
-                  src={machine.image}
-                  alt={machine.name}
-                  className="object-cover w-full h-full transition-transform hover:scale-105"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{machine.name}</h3>
-                <p className="text-muted-foreground mb-4">
-                  {machine.description}
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-bold">
-                    ${machine.price.toLocaleString()}
-                  </span>
-                  <Button onClick={() => addToCart(machine)}>
-                    Add to Cart
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
+        <CardContent className="p-6">
+          <h3 className="text-xl font-semibold mb-2">
+            {featuredMachines[0].name}
+          </h3>
+          <p className="text-muted-foreground mb-4">
+            {featuredMachines[0].description}
+          </p>
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-bold">
+              ${featuredMachines[0].price.toLocaleString()}
+            </span>
+            <Button onClick={() => addToCart(featuredMachines[0])}>
+              Add to Cart
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    )}
+  </div>
+</section>
+
 
       {/* Featured Spare Parts */}
       <section id="parts" className="bg-muted/30">
@@ -314,21 +322,17 @@ const HomePage = () => {
             />
           </div>
           <div>
-            <h3 className="text-2xl font-semibold mb-4">Our Expertise</h3>
+            <h3 className="text-2xl font-semibold mb-4">Our Vision</h3>
             <p className="text-muted-foreground mb-6">
-              With over 20 years of experience in the industrial machinery
-              sector, Varicacao Tech has established itself as a leading
-              provider of high-quality manufacturing equipment and spare parts.
-              Our team of engineers and technicians are dedicated to delivering
-              reliable solutions for businesses of all sizes.
+             Our vision is to transform tha cacao industry by giving farmers the tools they need to 
+             easily segregate different cacao varities, helping them improve quality and grow 
+             their businesses
             </p>
-            <h3 className="text-2xl font-semibold mb-4">Our Commitment</h3>
+            <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
             <p className="text-muted-foreground mb-6">
-              We are committed to providing exceptional customer service and
-              technical support. Our comprehensive inventory of spare parts
-              ensures minimal downtime for your operations, and our
-              knowledgeable staff is always available to assist with your
-              equipment needs.
+              Our mission is to design innovative cacao segregators that help segregation Process of
+              cacao varities. We are commited to support our customers with exceptional service and continuous
+              technological advancements, ensuring that every cacao producer can achieve success in cacao industry. 
             </p>
             <Button>Learn More About Us</Button>
           </div>
@@ -339,7 +343,7 @@ const HomePage = () => {
       <section className="bg-muted/30">
         <div className="container mx-auto px-4 py-16">
           <h2 className="text-3xl font-bold mb-12 text-center">
-            What Our Customers Say
+            Our Team
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="p-6">
@@ -350,17 +354,13 @@ const HomePage = () => {
                   className="w-12 h-12 rounded-full mr-4"
                 />
                 <div>
-                  <h4 className="font-semibold">John Doe</h4>
+                  <h4 className="font-semibold">Jaylord Agub</h4>
                   <p className="text-sm text-muted-foreground">
                     Manufacturing Director
                   </p>
                 </div>
               </div>
-              <p className="text-muted-foreground">
-                "The machines we purchased from Varicacao Tech have
-                significantly improved our production efficiency. Their spare
-                parts service is prompt and reliable."
-              </p>
+             
             </Card>
             <Card className="p-6">
               <div className="flex items-center mb-4">
@@ -370,17 +370,13 @@ const HomePage = () => {
                   className="w-12 h-12 rounded-full mr-4"
                 />
                 <div>
-                  <h4 className="font-semibold">Jane Smith</h4>
+                  <h4 className="font-semibold">Marylitte Capistrano</h4>
                   <p className="text-sm text-muted-foreground">
                     Operations Manager
                   </p>
                 </div>
               </div>
-              <p className="text-muted-foreground">
-                "Excellent customer service and technical support. The team at
-                Varicacao Tech goes above and beyond to ensure our equipment
-                runs smoothly."
-              </p>
+             
             </Card>
             <Card className="p-6">
               <div className="flex items-center mb-4">
@@ -390,17 +386,28 @@ const HomePage = () => {
                   className="w-12 h-12 rounded-full mr-4"
                 />
                 <div>
-                  <h4 className="font-semibold">Robert Johnson</h4>
+                  <h4 className="font-semibold">Jamaica Quizzagan</h4>
                   <p className="text-sm text-muted-foreground">
                     Procurement Specialist
                   </p>
                 </div>
               </div>
-              <p className="text-muted-foreground">
-                "The quality of their machines and spare parts is exceptional.
-                We've been a loyal customer for over 5 years and have never been
-                disappointed."
-              </p>
+             
+            </Card>
+            <Card className="p-6">
+              <div className="flex items-center mb-4">
+                <img
+                  src="https://api.dicebear.com/7.x/avataaars/svg?seed=client3"
+                  alt="Client"
+                  className="w-12 h-12 rounded-full mr-4"
+                />
+                <div>
+                  <h4 className="font-semibold">Glenn Kylle Fronda</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Procurement Specialist
+                  </p>
+                </div>
+              </div>
             </Card>
           </div>
         </div>
@@ -435,7 +442,7 @@ const HomePage = () => {
                     />
                   </svg>
                 </div>
-                <span>+1 (555) 123-4567</span>
+                <span>09267906457</span>
               </div>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4">
@@ -479,7 +486,7 @@ const HomePage = () => {
                     />
                   </svg>
                 </div>
-                <span>123 Industrial Avenue, Tech City, TC 12345</span>
+                <span>68D Provincial Road, Linao East, Tuguegarao City</span>
               </div>
             </div>
           </div>
@@ -616,7 +623,7 @@ const HomePage = () => {
                     href="#"
                     className="text-muted-foreground hover:text-primary"
                   >
-                    Industrial Mixers
+                    Cacao Beans Segregator
                   </a>
                 </li>
                 <li>
@@ -624,33 +631,10 @@ const HomePage = () => {
                     href="#"
                     className="text-muted-foreground hover:text-primary"
                   >
-                    Cutting Machines
+                    Spare Parts Replacement
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-primary"
-                  >
-                    Packaging Systems
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-primary"
-                  >
-                    Replacement Parts
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-primary"
-                  >
-                    Maintenance Kits
-                  </a>
-                </li>
+               
               </ul>
             </div>
             <div>
@@ -672,7 +656,7 @@ const HomePage = () => {
           <Separator className="my-8" />
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm">
-              © 2023 Varicacao Tech. All rights reserved.
+              © 2025 Varicacao Tech. All rights reserved.
             </p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               <a href="#" className="text-muted-foreground hover:text-primary">
