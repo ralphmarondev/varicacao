@@ -1,0 +1,9 @@
+# When you add something
+
+git add .
+git commit -m 'my message'
+git push
+
+# If getting an error
+git pull 
+then repeat
