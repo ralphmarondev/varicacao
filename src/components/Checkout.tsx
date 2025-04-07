@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import {
   ChevronLeft,
   ChevronRight,
@@ -11,9 +11,9 @@ import {
   Phone,
   Mail,
   ShieldCheck,
-} from "lucide-react";
+} from 'lucide-react'
 
-import { Button } from "./ui/button";
+import { Button } from './ui/button'
 import {
   Card,
   CardContent,
@@ -21,171 +21,170 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-import { Separator } from "./ui/separator";
-import { Textarea } from "./ui/textarea";
-import { Progress } from "./ui/progress";
+} from './ui/card'
+import { Input } from './ui/input'
+import { Label } from './ui/label'
+import { RadioGroup, RadioGroupItem } from './ui/radio-group'
+import { Separator } from './ui/separator'
+import { Textarea } from './ui/textarea'
+import { Progress } from './ui/progress'
 
 interface CheckoutProps {
   cartItems?: Array<{
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    image: string;
-  }>;
-  onBack?: () => void;
-  onComplete?: () => void;
+    id: string
+    name: string
+    price: number
+    quantity: number
+    image: string
+  }>
+  onBack?: () => void
+  onComplete?: () => void
 }
 
 const Checkout = ({
   cartItems = [
     {
-      id: "1",
-      name: "Industrial Drilling Machine X500",
+      id: '1',
+      name: 'Industrial Drilling Machine X500',
       price: 2499.99,
       quantity: 1,
-      image:
-        "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400&q=80",
+      image: '/1.jpg',
     },
     {
-      id: "2",
-      name: "Replacement Drill Bits (Set of 5)",
+      id: '2',
+      name: 'Replacement Drill Bits (Set of 5)',
       price: 129.99,
       quantity: 2,
       image:
-        "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&q=80",
+        'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&q=80',
     },
   ],
   onBack = () => {},
   onComplete = () => {},
 }: CheckoutProps) => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(1)
   const [formData, setFormData] = useState({
     // Customer Information
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
 
     // Shipping Information
-    address: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    country: "Brazil",
+    address: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    country: 'Brazil',
 
     // Payment Information
-    paymentMethod: "creditCard",
-    cardNumber: "",
-    cardName: "",
-    expiryDate: "",
-    cvv: "",
-    bankName: "",
-    accountNumber: "",
-    notes: "",
-  });
+    paymentMethod: 'creditCard',
+    cardNumber: '',
+    cardName: '',
+    expiryDate: '',
+    cvv: '',
+    bankName: '',
+    accountNumber: '',
+    notes: '',
+  })
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleRadioChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, paymentMethod: value }));
-  };
+    setFormData((prev) => ({ ...prev, paymentMethod: value }))
+  }
 
   const nextStep = () => {
-    if (step < 4) setStep(step + 1);
-  };
+    if (step < 4) setStep(step + 1)
+  }
 
   const prevStep = () => {
-    if (step > 1) setStep(step - 1);
-    else onBack();
-  };
+    if (step > 1) setStep(step - 1)
+    else onBack()
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (step === 4) {
       // Process payment and complete order
-      onComplete();
+      onComplete()
     } else {
-      nextStep();
+      nextStep()
     }
-  };
+  }
 
   // Calculate totals
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-  const shipping = 25.0;
-  const tax = subtotal * 0.1; // 10% tax
-  const total = subtotal + shipping + tax;
+    0
+  )
+  const shipping = 25.0
+  const tax = subtotal * 0.1 // 10% tax
+  const total = subtotal + shipping + tax
 
   return (
-    <div className="bg-background w-full max-w-[1000px] mx-auto p-4 md:p-6">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold mb-2">Checkout</h1>
-        <Progress value={(step / 4) * 100} className="h-2 mb-4" />
-        <div className="flex justify-between text-sm text-muted-foreground">
-          <span className={step >= 1 ? "font-medium text-primary" : ""}>
+    <div className='bg-background w-full max-w-[1000px] mx-auto p-4 md:p-6'>
+      <div className='mb-8'>
+        <h1 className='text-2xl font-bold mb-2'>Checkout</h1>
+        <Progress value={(step / 4) * 100} className='h-2 mb-4' />
+        <div className='flex justify-between text-sm text-muted-foreground'>
+          <span className={step >= 1 ? 'font-medium text-primary' : ''}>
             Customer Info
           </span>
-          <span className={step >= 2 ? "font-medium text-primary" : ""}>
+          <span className={step >= 2 ? 'font-medium text-primary' : ''}>
             Shipping
           </span>
-          <span className={step >= 3 ? "font-medium text-primary" : ""}>
+          <span className={step >= 3 ? 'font-medium text-primary' : ''}>
             Payment
           </span>
-          <span className={step >= 4 ? "font-medium text-primary" : ""}>
+          <span className={step >= 4 ? 'font-medium text-primary' : ''}>
             Review
           </span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+        <div className='lg:col-span-2'>
           <form onSubmit={handleSubmit}>
-            <Card className="mb-6">
+            <Card className='mb-6'>
               <CardHeader>
                 <CardTitle>
                   {step === 1 && (
                     <>
-                      <User className="inline mr-2 h-5 w-5" /> Customer
+                      <User className='inline mr-2 h-5 w-5' /> Customer
                       Information
                     </>
                   )}
                   {step === 2 && (
                     <>
-                      <MapPin className="inline mr-2 h-5 w-5" /> Shipping
+                      <MapPin className='inline mr-2 h-5 w-5' /> Shipping
                       Information
                     </>
                   )}
                   {step === 3 && (
                     <>
-                      <CreditCard className="inline mr-2 h-5 w-5" /> Payment
+                      <CreditCard className='inline mr-2 h-5 w-5' /> Payment
                       Method
                     </>
                   )}
                   {step === 4 && (
                     <>
-                      <ShieldCheck className="inline mr-2 h-5 w-5" /> Review
+                      <ShieldCheck className='inline mr-2 h-5 w-5' /> Review
                       Order
                     </>
                   )}
                 </CardTitle>
                 <CardDescription>
-                  {step === 1 && "Please enter your contact details"}
-                  {step === 2 && "Where should we ship your order?"}
-                  {step === 3 && "Select your preferred payment method"}
+                  {step === 1 && 'Please enter your contact details'}
+                  {step === 2 && 'Where should we ship your order?'}
+                  {step === 3 && 'Select your preferred payment method'}
                   {step === 4 &&
-                    "Please review your order details before confirming"}
+                    'Please review your order details before confirming'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -195,45 +194,45 @@ const Checkout = ({
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                    className='grid grid-cols-1 md:grid-cols-2 gap-4'
                   >
-                    <div className="space-y-2">
-                      <Label htmlFor="firstName">First Name</Label>
+                    <div className='space-y-2'>
+                      <Label htmlFor='firstName'>First Name</Label>
                       <Input
-                        id="firstName"
-                        name="firstName"
+                        id='firstName'
+                        name='firstName'
                         value={formData.firstName}
                         onChange={handleInputChange}
                         required
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="lastName">Last Name</Label>
+                    <div className='space-y-2'>
+                      <Label htmlFor='lastName'>Last Name</Label>
                       <Input
-                        id="lastName"
-                        name="lastName"
+                        id='lastName'
+                        name='lastName'
                         value={formData.lastName}
                         onChange={handleInputChange}
                         required
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
+                    <div className='space-y-2'>
+                      <Label htmlFor='email'>Email Address</Label>
                       <Input
-                        id="email"
-                        name="email"
-                        type="email"
+                        id='email'
+                        name='email'
+                        type='email'
                         value={formData.email}
                         onChange={handleInputChange}
                         required
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
+                    <div className='space-y-2'>
+                      <Label htmlFor='phone'>Phone Number</Label>
                       <Input
-                        id="phone"
-                        name="phone"
-                        type="tel"
+                        id='phone'
+                        name='phone'
+                        type='tel'
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
@@ -248,56 +247,56 @@ const Checkout = ({
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="space-y-4"
+                    className='space-y-4'
                   >
-                    <div className="space-y-2">
-                      <Label htmlFor="address">Street Address</Label>
+                    <div className='space-y-2'>
+                      <Label htmlFor='address'>Street Address</Label>
                       <Input
-                        id="address"
-                        name="address"
+                        id='address'
+                        name='address'
                         value={formData.address}
                         onChange={handleInputChange}
                         required
                       />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="city">City</Label>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                      <div className='space-y-2'>
+                        <Label htmlFor='city'>City</Label>
                         <Input
-                          id="city"
-                          name="city"
+                          id='city'
+                          name='city'
                           value={formData.city}
                           onChange={handleInputChange}
                           required
                         />
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="state">State/Province</Label>
+                      <div className='space-y-2'>
+                        <Label htmlFor='state'>State/Province</Label>
                         <Input
-                          id="state"
-                          name="state"
+                          id='state'
+                          name='state'
                           value={formData.state}
                           onChange={handleInputChange}
                           required
                         />
                       </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="zipCode">Postal/Zip Code</Label>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                      <div className='space-y-2'>
+                        <Label htmlFor='zipCode'>Postal/Zip Code</Label>
                         <Input
-                          id="zipCode"
-                          name="zipCode"
+                          id='zipCode'
+                          name='zipCode'
                           value={formData.zipCode}
                           onChange={handleInputChange}
                           required
                         />
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="country">Country</Label>
+                      <div className='space-y-2'>
+                        <Label htmlFor='country'>Country</Label>
                         <Input
-                          id="country"
-                          name="country"
+                          id='country'
+                          name='country'
                           value={formData.country}
                           onChange={handleInputChange}
                           required
@@ -313,81 +312,81 @@ const Checkout = ({
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="space-y-6"
+                    className='space-y-6'
                   >
                     <RadioGroup
                       value={formData.paymentMethod}
                       onValueChange={handleRadioChange}
-                      className="space-y-4"
+                      className='space-y-4'
                     >
-                      <div className="flex items-center space-x-2 border p-4 rounded-md hover:bg-muted cursor-pointer">
-                        <RadioGroupItem value="creditCard" id="creditCard" />
+                      <div className='flex items-center space-x-2 border p-4 rounded-md hover:bg-muted cursor-pointer'>
+                        <RadioGroupItem value='creditCard' id='creditCard' />
                         <Label
-                          htmlFor="creditCard"
-                          className="flex items-center cursor-pointer"
+                          htmlFor='creditCard'
+                          className='flex items-center cursor-pointer'
                         >
-                          <CreditCard className="mr-2 h-5 w-5" />
+                          <CreditCard className='mr-2 h-5 w-5' />
                           Credit Card
                         </Label>
                       </div>
-                      <div className="flex items-center space-x-2 border p-4 rounded-md hover:bg-muted cursor-pointer">
+                      <div className='flex items-center space-x-2 border p-4 rounded-md hover:bg-muted cursor-pointer'>
                         <RadioGroupItem
-                          value="bankTransfer"
-                          id="bankTransfer"
+                          value='bankTransfer'
+                          id='bankTransfer'
                         />
                         <Label
-                          htmlFor="bankTransfer"
-                          className="flex items-center cursor-pointer"
+                          htmlFor='bankTransfer'
+                          className='flex items-center cursor-pointer'
                         >
-                          <Building2 className="mr-2 h-5 w-5" />
+                          <Building2 className='mr-2 h-5 w-5' />
                           Bank Transfer
                         </Label>
                       </div>
                     </RadioGroup>
 
-                    {formData.paymentMethod === "creditCard" && (
-                      <div className="space-y-4 mt-4 border p-4 rounded-md bg-muted/30">
-                        <div className="space-y-2">
-                          <Label htmlFor="cardName">Name on Card</Label>
+                    {formData.paymentMethod === 'creditCard' && (
+                      <div className='space-y-4 mt-4 border p-4 rounded-md bg-muted/30'>
+                        <div className='space-y-2'>
+                          <Label htmlFor='cardName'>Name on Card</Label>
                           <Input
-                            id="cardName"
-                            name="cardName"
+                            id='cardName'
+                            name='cardName'
                             value={formData.cardName}
                             onChange={handleInputChange}
                             required
                           />
                         </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="cardNumber">Card Number</Label>
+                        <div className='space-y-2'>
+                          <Label htmlFor='cardNumber'>Card Number</Label>
                           <Input
-                            id="cardNumber"
-                            name="cardNumber"
+                            id='cardNumber'
+                            name='cardNumber'
                             value={formData.cardNumber}
                             onChange={handleInputChange}
-                            placeholder="XXXX XXXX XXXX XXXX"
+                            placeholder='XXXX XXXX XXXX XXXX'
                             required
                           />
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="expiryDate">Expiry Date</Label>
+                        <div className='grid grid-cols-2 gap-4'>
+                          <div className='space-y-2'>
+                            <Label htmlFor='expiryDate'>Expiry Date</Label>
                             <Input
-                              id="expiryDate"
-                              name="expiryDate"
+                              id='expiryDate'
+                              name='expiryDate'
                               value={formData.expiryDate}
                               onChange={handleInputChange}
-                              placeholder="MM/YY"
+                              placeholder='MM/YY'
                               required
                             />
                           </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="cvv">CVV</Label>
+                          <div className='space-y-2'>
+                            <Label htmlFor='cvv'>CVV</Label>
                             <Input
-                              id="cvv"
-                              name="cvv"
+                              id='cvv'
+                              name='cvv'
                               value={formData.cvv}
                               onChange={handleInputChange}
-                              placeholder="123"
+                              placeholder='123'
                               required
                             />
                           </div>
@@ -395,23 +394,23 @@ const Checkout = ({
                       </div>
                     )}
 
-                    {formData.paymentMethod === "bankTransfer" && (
-                      <div className="space-y-4 mt-4 border p-4 rounded-md bg-muted/30">
-                        <div className="space-y-2">
-                          <Label htmlFor="bankName">Bank Name</Label>
+                    {formData.paymentMethod === 'bankTransfer' && (
+                      <div className='space-y-4 mt-4 border p-4 rounded-md bg-muted/30'>
+                        <div className='space-y-2'>
+                          <Label htmlFor='bankName'>Bank Name</Label>
                           <Input
-                            id="bankName"
-                            name="bankName"
+                            id='bankName'
+                            name='bankName'
                             value={formData.bankName}
                             onChange={handleInputChange}
                             required
                           />
                         </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="accountNumber">Account Number</Label>
+                        <div className='space-y-2'>
+                          <Label htmlFor='accountNumber'>Account Number</Label>
                           <Input
-                            id="accountNumber"
-                            name="accountNumber"
+                            id='accountNumber'
+                            name='accountNumber'
                             value={formData.accountNumber}
                             onChange={handleInputChange}
                             required
@@ -420,14 +419,14 @@ const Checkout = ({
                       </div>
                     )}
 
-                    <div className="space-y-2">
-                      <Label htmlFor="notes">Order Notes (Optional)</Label>
+                    <div className='space-y-2'>
+                      <Label htmlFor='notes'>Order Notes (Optional)</Label>
                       <Textarea
-                        id="notes"
-                        name="notes"
+                        id='notes'
+                        name='notes'
                         value={formData.notes}
                         onChange={handleInputChange}
-                        placeholder="Special instructions for delivery or any other notes"
+                        placeholder='Special instructions for delivery or any other notes'
                       />
                     </div>
                   </motion.div>
@@ -439,21 +438,21 @@ const Checkout = ({
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="space-y-6"
+                    className='space-y-6'
                   >
-                    <div className="space-y-4">
-                      <h3 className="font-medium">Customer Information</h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                    <div className='space-y-4'>
+                      <h3 className='font-medium'>Customer Information</h3>
+                      <div className='grid grid-cols-1 md:grid-cols-2 gap-2 text-sm'>
                         <div>
-                          <span className="text-muted-foreground">Name:</span>{" "}
+                          <span className='text-muted-foreground'>Name:</span>{' '}
                           {formData.firstName} {formData.lastName}
                         </div>
                         <div>
-                          <span className="text-muted-foreground">Email:</span>{" "}
+                          <span className='text-muted-foreground'>Email:</span>{' '}
                           {formData.email}
                         </div>
                         <div>
-                          <span className="text-muted-foreground">Phone:</span>{" "}
+                          <span className='text-muted-foreground'>Phone:</span>{' '}
                           {formData.phone}
                         </div>
                       </div>
@@ -461,23 +460,23 @@ const Checkout = ({
 
                     <Separator />
 
-                    <div className="space-y-4">
-                      <h3 className="font-medium">Shipping Information</h3>
-                      <div className="grid grid-cols-1 gap-2 text-sm">
+                    <div className='space-y-4'>
+                      <h3 className='font-medium'>Shipping Information</h3>
+                      <div className='grid grid-cols-1 gap-2 text-sm'>
                         <div>
-                          <span className="text-muted-foreground">
+                          <span className='text-muted-foreground'>
                             Address:
-                          </span>{" "}
+                          </span>{' '}
                           {formData.address}
                         </div>
                         <div>
-                          <span className="text-muted-foreground">City:</span>{" "}
+                          <span className='text-muted-foreground'>City:</span>{' '}
                           {formData.city}, {formData.state} {formData.zipCode}
                         </div>
                         <div>
-                          <span className="text-muted-foreground">
+                          <span className='text-muted-foreground'>
                             Country:
-                          </span>{" "}
+                          </span>{' '}
                           {formData.country}
                         </div>
                       </div>
@@ -485,18 +484,18 @@ const Checkout = ({
 
                     <Separator />
 
-                    <div className="space-y-4">
-                      <h3 className="font-medium">Payment Method</h3>
-                      <div className="text-sm">
-                        {formData.paymentMethod === "creditCard" ? (
-                          <div className="flex items-center">
-                            <CreditCard className="mr-2 h-4 w-4" />
-                            Credit Card ending in{" "}
+                    <div className='space-y-4'>
+                      <h3 className='font-medium'>Payment Method</h3>
+                      <div className='text-sm'>
+                        {formData.paymentMethod === 'creditCard' ? (
+                          <div className='flex items-center'>
+                            <CreditCard className='mr-2 h-4 w-4' />
+                            Credit Card ending in{' '}
                             {formData.cardNumber.slice(-4)}
                           </div>
                         ) : (
-                          <div className="flex items-center">
-                            <Building2 className="mr-2 h-4 w-4" />
+                          <div className='flex items-center'>
+                            <Building2 className='mr-2 h-4 w-4' />
                             Bank Transfer - {formData.bankName}
                           </div>
                         )}
@@ -506,27 +505,27 @@ const Checkout = ({
                     {formData.notes && (
                       <>
                         <Separator />
-                        <div className="space-y-2">
-                          <h3 className="font-medium">Order Notes</h3>
-                          <p className="text-sm">{formData.notes}</p>
+                        <div className='space-y-2'>
+                          <h3 className='font-medium'>Order Notes</h3>
+                          <p className='text-sm'>{formData.notes}</p>
                         </div>
                       </>
                     )}
                   </motion.div>
                 )}
               </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button type="button" variant="outline" onClick={prevStep}>
-                  <ChevronLeft className="mr-2 h-4 w-4" />
-                  {step === 1 ? "Back to Cart" : "Previous"}
+              <CardFooter className='flex justify-between'>
+                <Button type='button' variant='outline' onClick={prevStep}>
+                  <ChevronLeft className='mr-2 h-4 w-4' />
+                  {step === 1 ? 'Back to Cart' : 'Previous'}
                 </Button>
-                <Button type="submit">
+                <Button type='submit'>
                   {step < 4 ? (
                     <>
-                      Next <ChevronRight className="ml-2 h-4 w-4" />
+                      Next <ChevronRight className='ml-2 h-4 w-4' />
                     </>
                   ) : (
-                    "Confirm Order"
+                    'Confirm Order'
                   )}
                 </Button>
               </CardFooter>
@@ -535,29 +534,29 @@ const Checkout = ({
         </div>
 
         {/* Order Summary */}
-        <div className="lg:col-span-1">
+        <div className='lg:col-span-1'>
           <Card>
             <CardHeader>
               <CardTitle>Order Summary</CardTitle>
               <CardDescription>Review your items</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className='space-y-4'>
               {cartItems.map((item) => (
-                <div key={item.id} className="flex items-center space-x-4">
-                  <div className="h-16 w-16 rounded-md overflow-hidden">
+                <div key={item.id} className='flex items-center space-x-4'>
+                  <div className='h-16 w-16 rounded-md overflow-hidden'>
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="h-full w-full object-cover"
+                      className='h-full w-full object-cover'
                     />
                   </div>
-                  <div className="flex-1 space-y-1">
-                    <p className="text-sm font-medium">{item.name}</p>
-                    <p className="text-sm text-muted-foreground">
+                  <div className='flex-1 space-y-1'>
+                    <p className='text-sm font-medium'>{item.name}</p>
+                    <p className='text-sm text-muted-foreground'>
                       ${item.price.toFixed(2)} x {item.quantity}
                     </p>
                   </div>
-                  <div className="font-medium">
+                  <div className='font-medium'>
                     ${(item.price * item.quantity).toFixed(2)}
                   </div>
                 </div>
@@ -565,29 +564,29 @@ const Checkout = ({
 
               <Separator />
 
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
+              <div className='space-y-2'>
+                <div className='flex justify-between text-sm'>
                   <span>Subtotal</span>
                   <span>${subtotal.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-sm">
+                <div className='flex justify-between text-sm'>
                   <span>Shipping</span>
                   <span>${shipping.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-sm">
+                <div className='flex justify-between text-sm'>
                   <span>Tax</span>
                   <span>${tax.toFixed(2)}</span>
                 </div>
                 <Separator />
-                <div className="flex justify-between font-medium">
+                <div className='flex justify-between font-medium'>
                   <span>Total</span>
                   <span>${total.toFixed(2)}</span>
                 </div>
               </div>
 
-              <div className="mt-6 text-xs text-muted-foreground">
-                <p className="flex items-center">
-                  <Truck className="mr-2 h-4 w-4" />
+              <div className='mt-6 text-xs text-muted-foreground'>
+                <p className='flex items-center'>
+                  <Truck className='mr-2 h-4 w-4' />
                   Estimated delivery: 3-5 business days
                 </p>
               </div>
@@ -596,7 +595,7 @@ const Checkout = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Checkout;
+export default Checkout

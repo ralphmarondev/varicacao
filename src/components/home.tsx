@@ -45,7 +45,7 @@ const HomePage = () => {
     {
       id: '1',
       name: 'Cacao Beans Segregator',
-      price: 7000,
+      price: 4000,
       image:
         'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80',
       description: 'High-capacity industrial mixer for large-scale production',
@@ -73,24 +73,21 @@ const HomePage = () => {
       id: '101',
       name: 'Motor Driver',
       price: 450,
-      image:
-        'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80',
+      image: '/motor_driver.png',
       description: 'Compatible with Precision Cutter Pro models',
     },
     {
       id: '102',
       name: 'Servo Motors',
       price: 320,
-      image:
-        'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80',
+      image: '/servo_motor.png',
       description: 'For Industrial Mixer XL-5000 series',
     },
     {
       id: '103',
       name: 'Stepper Motors',
       price: 580,
-      image:
-        'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80',
+      image: '/stepper_motor.png',
       description: 'Replacement kit for Automated Packaging Systems',
     },
   ]
@@ -266,7 +263,7 @@ const HomePage = () => {
                 </p>
                 <div className='flex justify-between items-center'>
                   <span className='text-lg font-bold'>
-                    ${featuredMachines[0].price.toLocaleString()}
+                    P{featuredMachines[0].price.toLocaleString()}
                   </span>
                   <Button onClick={() => addToCart(featuredMachines[0])}>
                     Add to Cart
@@ -302,7 +299,7 @@ const HomePage = () => {
                   </p>
                   <div className='flex justify-between items-center'>
                     <span className='text-lg font-bold'>
-                      ${part.price.toLocaleString()}
+                      P{part.price.toLocaleString()}
                     </span>
                     <Button onClick={() => addToCart(part)}>Add to Cart</Button>
                   </div>
@@ -358,9 +355,7 @@ const HomePage = () => {
                 />
                 <div>
                   <h4 className='font-semibold'>Jaylord Agub</h4>
-                  <p className='text-sm text-muted-foreground'>
-                    Manufacturing Director
-                  </p>
+                  <p className='text-sm text-muted-foreground'></p>
                 </div>
               </div>
             </Card>
@@ -373,9 +368,7 @@ const HomePage = () => {
                 />
                 <div>
                   <h4 className='font-semibold'>Marylitte Capistrano</h4>
-                  <p className='text-sm text-muted-foreground'>
-                    Operations Manager
-                  </p>
+                  <p className='text-sm text-muted-foreground'></p>
                 </div>
               </div>
             </Card>
@@ -388,9 +381,7 @@ const HomePage = () => {
                 />
                 <div>
                   <h4 className='font-semibold'>Jamaica Quizzagan</h4>
-                  <p className='text-sm text-muted-foreground'>
-                    Procurement Specialist
-                  </p>
+                  <p className='text-sm text-muted-foreground'></p>
                 </div>
               </div>
             </Card>
@@ -403,9 +394,7 @@ const HomePage = () => {
                 />
                 <div>
                   <h4 className='font-semibold'>Glenn Kylle Fronda</h4>
-                  <p className='text-sm text-muted-foreground'>
-                    Procurement Specialist
-                  </p>
+                  <p className='text-sm text-muted-foreground'></p>
                 </div>
               </div>
             </Card>

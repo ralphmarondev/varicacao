@@ -185,7 +185,7 @@ const ShoppingCart = ({
                           </Button>
                         </div>
                         <span className='font-medium'>
-                          ${(item.price * item.quantity).toFixed(2)}
+                          P{(item.price * item.quantity).toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -199,7 +199,7 @@ const ShoppingCart = ({
               <div className='space-y-4'>
                 <div className='flex justify-between'>
                   <span>Subtotal</span>
-                  <span className='font-medium'>${subtotal.toFixed(2)}</span>
+                  <span className='font-medium'>P{subtotal.toFixed(2)}</span>
                 </div>
                 <div className='flex justify-between'>
                   <span>Shipping</span>
@@ -208,7 +208,7 @@ const ShoppingCart = ({
                 <Separator />
                 <div className='flex justify-between text-lg font-semibold'>
                   <span>Total</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>P{subtotal.toFixed(2)}</span>
                 </div>
                 <Button className='w-full' size='lg' onClick={onCheckout}>
                   Proceed to Checkout
