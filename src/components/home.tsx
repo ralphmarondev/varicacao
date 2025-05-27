@@ -127,7 +127,7 @@ const HomePage = () => {
             </Button>
             <a href='#' className='flex items-center gap-2'>
               <img
-                src='https://api.dicebear.com/7.x/avataaars/svg?seed=varicacao'
+                src='/logo.jpeg'
                 alt='Logo'
                 className='h-8 w-8'
               />
@@ -316,7 +316,7 @@ const HomePage = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-12 items-center'>
           <div>
             <img
-              src='https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80'
+              src='/logo.jpeg'
               alt='Company Facility'
               className='rounded-lg shadow-lg w-full'
             />
@@ -349,7 +349,7 @@ const HomePage = () => {
             <Card className='p-6'>
               <div className='flex items-center mb-4'>
                 <img
-                  src='https://api.dicebear.com/7.x/avataaars/svg?seed=client1'
+                  src='/jay.jpeg'
                   alt='Client'
                   className='w-12 h-12 rounded-full mr-4'
                 />
@@ -362,7 +362,7 @@ const HomePage = () => {
             <Card className='p-6'>
               <div className='flex items-center mb-4'>
                 <img
-                  src='https://api.dicebear.com/7.x/avataaars/svg?seed=client2'
+                  src='/melit.jpeg'
                   alt='Client'
                   className='w-12 h-12 rounded-full mr-4'
                 />
@@ -375,7 +375,7 @@ const HomePage = () => {
             <Card className='p-6'>
               <div className='flex items-center mb-4'>
                 <img
-                  src='https://api.dicebear.com/7.x/avataaars/svg?seed=client3'
+                  src='/jam.jpeg'
                   alt='Client'
                   className='w-12 h-12 rounded-full mr-4'
                 />
@@ -388,7 +388,7 @@ const HomePage = () => {
             <Card className='p-6'>
               <div className='flex items-center mb-4'>
                 <img
-                  src='https://api.dicebear.com/7.x/avataaars/svg?seed=client3'
+                  src='/glen.jpeg'
                   alt='Client'
                   className='w-12 h-12 rounded-full mr-4'
                 />
