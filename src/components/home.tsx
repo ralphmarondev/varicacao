@@ -47,7 +47,7 @@ const HomePage = () => {
       name: 'Cacao Beans Segregator',
       price: 4000,
       image:
-        'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80',
+        '/featured1.jpeg',
       description: 'High-capacity industrial mixer for large-scale production',
     },
     {
